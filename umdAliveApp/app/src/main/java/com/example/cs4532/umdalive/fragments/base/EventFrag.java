@@ -1,8 +1,8 @@
 package com.example.cs4532.umdalive.fragments.base;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +17,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.cs4532.umdalive.R;
 import com.example.cs4532.umdalive.RestSingleton;
 import com.example.cs4532.umdalive.UserSingleton;
-import com.example.cs4532.umdalive.fragments.base.ClubFrag;
 import com.example.cs4532.umdalive.fragments.edit.EditEventFrag;
 
 import org.json.JSONException;
@@ -137,7 +136,7 @@ public class EventFrag extends Fragment{
         eventDate.setText(res.getString("date"));
         eventDescription.setText(res.getString("description"));
         eventTime.setText(res.getString("time"));
-        goTo.setTag(res.getJSONObject("club").getString("_id").toString());
+        goTo.setTag(res.getJSONObject("club").getString("_id"));
         if(UserSingleton.getInstance().getUserID()!=res.getJSONObject("club").getJSONObject("members").getString("admin")){
             editEventFAB.setVisibility(View.GONE);
         }

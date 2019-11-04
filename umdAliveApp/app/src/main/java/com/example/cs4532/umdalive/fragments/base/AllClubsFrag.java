@@ -1,6 +1,6 @@
 package com.example.cs4532.umdalive.fragments.base;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -98,7 +98,7 @@ public class AllClubsFrag extends Fragment implements View.OnClickListener {
      * @return nothing
      */
     private void getLayoutComponents () {
-        allClubsLinearLayout = (LinearLayout) view.findViewById(R.id.AllClubsLayout);
+        allClubsLinearLayout = view.findViewById(R.id.AllClubsLayout);
     }
 
     /**
@@ -113,7 +113,7 @@ public class AllClubsFrag extends Fragment implements View.OnClickListener {
         JSONArray allClubs = res.getJSONArray("clubs");
         for (int i=0;i<allClubs.length();i++) {
             String name = allClubs.getJSONObject(i).getString("name");
-            String id = allClubs.getJSONObject(i).getString("_id").toString();
+            String id = allClubs.getJSONObject(i).getString("_id");
             TextView clubName = new TextView(view.getContext());
             clubName.setText(name);
             clubName.setTextSize(24);

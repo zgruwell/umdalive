@@ -1,11 +1,10 @@
 package com.example.cs4532.umdalive.fragments.base;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.cs4532.umdalive.R;
 import com.example.cs4532.umdalive.RestSingleton;
 import com.example.cs4532.umdalive.UserSingleton;
@@ -142,13 +139,13 @@ public class ClubFrag extends Fragment{
      */
     private void getLayoutComponents() {
         clubImage = view.findViewById(R.id.clubImage);
-        clubName = (TextView) view.findViewById(R.id.ClubNameView);
-        clubDescription = (TextView) view.findViewById(R.id.DescriptionView);
-        joinLeave= (Button) view.findViewById(R.id.ClubJoinLeave);
-        members = (LinearLayout) view.findViewById(R.id.memberList);
-        eventsList = (LinearLayout) view.findViewById(R.id.eventsList);
-        editClub = (FloatingActionButton) view.findViewById(R.id.EditClub);
-        addEvent = (FloatingActionButton) view.findViewById(R.id.AddEvent);
+        clubName = view.findViewById(R.id.ClubNameView);
+        clubDescription = view.findViewById(R.id.DescriptionView);
+        joinLeave= view.findViewById(R.id.ClubJoinLeave);
+        members = view.findViewById(R.id.memberList);
+        eventsList = view.findViewById(R.id.eventsList);
+        editClub = view.findViewById(R.id.EditClub);
+        addEvent = view.findViewById(R.id.AddEvent);
     }
 
     /**
@@ -226,7 +223,7 @@ public class ClubFrag extends Fragment{
 
         if(admins.getString("userID").equals(userID)){
             editClub.setVisibility(View.VISIBLE);
-            addEvent.setVisibility(view.VISIBLE);
+            addEvent.setVisibility(View.VISIBLE);
             joinLeave.setVisibility(View.GONE);
         }
 

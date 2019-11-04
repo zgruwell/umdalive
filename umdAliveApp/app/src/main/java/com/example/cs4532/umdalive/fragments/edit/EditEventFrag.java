@@ -1,7 +1,7 @@
 package com.example.cs4532.umdalive.fragments.edit;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,7 +98,7 @@ public class EditEventFrag  extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v.getTag()=="DELETE"){
-            String clubid = new String();
+            String clubid = "";
             try {
                 clubid =  eventData.getString("_id");
             } catch (JSONException e) {

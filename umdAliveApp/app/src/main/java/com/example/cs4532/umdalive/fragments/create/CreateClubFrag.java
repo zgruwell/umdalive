@@ -2,7 +2,7 @@ package com.example.cs4532.umdalive.fragments.create;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +18,6 @@ import com.example.cs4532.umdalive.R;
 import com.example.cs4532.umdalive.RestSingleton;
 import com.example.cs4532.umdalive.UserSingleton;
 import com.example.cs4532.umdalive.fragments.base.ClubFrag;
-import com.example.cs4532.umdalive.fragments.base.ProfileFrag;
 
 import org.json.JSONArray;
 import org.json.JSONException;
