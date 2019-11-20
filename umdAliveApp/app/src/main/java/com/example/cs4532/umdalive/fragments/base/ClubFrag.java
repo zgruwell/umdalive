@@ -1,5 +1,6 @@
 package com.example.cs4532.umdalive.fragments.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,7 @@ import com.example.cs4532.umdalive.RestSingleton;
 import com.example.cs4532.umdalive.UserSingleton;
 import com.example.cs4532.umdalive.fragments.create.CreateEventFrag;
 import com.example.cs4532.umdalive.fragments.edit.EditClubFrag;
+import com.example.cs4532.umdalive.fragments.base.ClubChatFrag;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,7 @@ public class ClubFrag extends Fragment{
     private TextView clubName;
 
     private Button joinLeave;
+    private Button clubChat;
     private TextView clubDescription;
 
     private LinearLayout members;
@@ -142,6 +145,7 @@ public class ClubFrag extends Fragment{
         clubName = view.findViewById(R.id.ClubNameView);
         clubDescription = view.findViewById(R.id.DescriptionView);
         joinLeave= view.findViewById(R.id.ClubJoinLeave);
+        clubChat= view.findViewById(R.id.ClubGroupChat);
         members = view.findViewById(R.id.memberList);
         eventsList = view.findViewById(R.id.eventsList);
         editClub = view.findViewById(R.id.EditClub);
@@ -189,6 +193,13 @@ public class ClubFrag extends Fragment{
             @Override
             public void onClick(View v) {
                 joinClub();
+            }
+        });
+
+        clubChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToChat();
             }
         });
 
@@ -328,5 +339,10 @@ public class ClubFrag extends Fragment{
         });
 
         RestSingleton.getInstance(getContext()).addToRequestQueue(jsonObjectRequest);
+    }
+
+    public void goToChat() {
+            Intent myIntent = new Intent(view.getContext(), ClubChatFrag.class);
+            startActivity(myIntent);
     }
 }

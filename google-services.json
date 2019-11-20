@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "218207566207",
+    "firebase_url": "https://norse-figure-256802.firebaseio.com",
+    "project_id": "norse-figure-256802",
+    "storage_bucket": "norse-figure-256802.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218207566207:android:9451e435418c64b2c4424a",
+        "android_client_info": {
+          "package_name": "com.example.cs4532.umdalive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218207566207-eifu9ojvj07c8kij11033mrj4u18tdo4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cs4532.umdalive",
+            "certificate_hash": "3e66f81c779d10a782daa2b1901175639115b98d"
+          }
+        },
+        {
+          "client_id": "218207566207-0cjsnvc88bpat6ctk8i7frofihhoji4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo6kinje_0gq_5X-uHMiwJYKYgoK3F6w4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218207566207-0cjsnvc88bpat6ctk8i7frofihhoji4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

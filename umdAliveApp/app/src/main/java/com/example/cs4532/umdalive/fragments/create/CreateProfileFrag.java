@@ -22,6 +22,7 @@ import com.example.cs4532.umdalive.RestSingleton;
 import com.example.cs4532.umdalive.UserSingleton;
 import com.example.cs4532.umdalive.fragments.base.ProfileFrag;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -121,12 +122,14 @@ public class CreateProfileFrag extends Fragment {
      */
     private void createUser() throws JSONException {
         JSONObject newUserData = new JSONObject();
+        JSONArray clubs = new JSONArray();
         newUserData.put("name", UserSingleton.getInstance().getName());
         newUserData.put("email", UserSingleton.getInstance().getEmail());
         newUserData.put("major", major.getText());
         newUserData.put("userID", UserSingleton.getInstance().getUserID());
         newUserData.put("description", about.getText());
         newUserData.put("profilePic", UserSingleton.getInstance().getProfileUrl());
+        newUserData.put("clubs", clubs);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, RestSingleton.getInstance(view.getContext()).getUrl() + "createUser", newUserData,
                 new Response.Listener<JSONObject>() {
