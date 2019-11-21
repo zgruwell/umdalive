@@ -1,9 +1,6 @@
 package com.example.cs4532.umdalive.fragments.base;
 
-import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -13,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -24,7 +23,7 @@ import com.example.cs4532.umdalive.RestSingleton;
 import com.example.cs4532.umdalive.UserSingleton;
 import com.example.cs4532.umdalive.fragments.create.CreateEventFrag;
 import com.example.cs4532.umdalive.fragments.edit.EditClubFrag;
-import com.example.cs4532.umdalive.fragments.base.ClubChatFrag;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +40,7 @@ import org.json.JSONObject;
  *
  * Class that creates the club page
  */
-public class ClubFrag extends Fragment{
+public class ClubFrag extends Fragment {
 
     //View
     View view;
@@ -51,7 +50,6 @@ public class ClubFrag extends Fragment{
     private TextView clubName;
 
     private Button joinLeave;
-    private Button clubChat;
     private TextView clubDescription;
 
     private LinearLayout members;
@@ -72,7 +70,7 @@ public class ClubFrag extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-         //Create View
+        //Create View
         view = inflater.inflate(R.layout.club_layout, container, false);
         view.setVisibility(View.GONE);
 
@@ -142,14 +140,13 @@ public class ClubFrag extends Fragment{
      */
     private void getLayoutComponents() {
         clubImage = view.findViewById(R.id.clubImage);
-        clubName = view.findViewById(R.id.ClubNameView);
-        clubDescription = view.findViewById(R.id.DescriptionView);
-        joinLeave= view.findViewById(R.id.ClubJoinLeave);
-        clubChat= view.findViewById(R.id.ClubGroupChat);
-        members = view.findViewById(R.id.memberList);
-        eventsList = view.findViewById(R.id.eventsList);
-        editClub = view.findViewById(R.id.EditClub);
-        addEvent = view.findViewById(R.id.AddEvent);
+        clubName = (TextView) view.findViewById(R.id.ClubNameView);
+        clubDescription = (TextView) view.findViewById(R.id.DescriptionView);
+        joinLeave= (Button) view.findViewById(R.id.ClubJoinLeave);
+        members = (LinearLayout) view.findViewById(R.id.memberList);
+        eventsList = (LinearLayout) view.findViewById(R.id.eventsList);
+        editClub = (FloatingActionButton) view.findViewById(R.id.EditClub);
+        addEvent = (FloatingActionButton) view.findViewById(R.id.AddEvent);
     }
 
     /**
@@ -196,45 +193,38 @@ public class ClubFrag extends Fragment{
             }
         });
 
-        clubChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToChat();
-            }
-        });
+        for (int i = 0; i < events.length(); i++) {
+            final JSONObject event = events.getJSONObject(i);
 
-            for (int i = 0; i < events.length(); i++) {
-                final JSONObject event = events.getJSONObject(i);
+            String name = event.getString("name");
+            String day = event.getString("date");
 
-                String name = event.getString("name");
-                String day = event.getString("date");
+            TextView eventText = new TextView(view.getContext());
 
-                TextView eventText = new TextView(view.getContext());
+            eventText.setText(name + " : " +day);
+            eventText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+            eventText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EventFrag frag = new EventFrag();
+                    Bundle data = new Bundle();
+                    try {
+                        data.putString("eventID", event.get("_id").toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    frag.setArguments(data);
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,frag).commit();
+                }       });
 
-                eventText.setText(name + " : " +day);
-                eventText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                eventText.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        EventFrag frag = new EventFrag();
-                        Bundle data = new Bundle();
-                        try {
-                            data.putString("eventID", event.get("_id").toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        frag.setArguments(data);
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,frag).commit();
-                    }       });
-
-                eventsList.addView(eventText);
-            }
+            eventsList.addView(eventText);
+        }
 
 
 
         if(admins.getString("userID").equals(userID)){
             editClub.setVisibility(View.VISIBLE);
-            addEvent.setVisibility(View.VISIBLE);
+            addEvent.setVisibility(view.VISIBLE);
             joinLeave.setVisibility(View.GONE);
         }
 
@@ -339,10 +329,5 @@ public class ClubFrag extends Fragment{
         });
 
         RestSingleton.getInstance(getContext()).addToRequestQueue(jsonObjectRequest);
-    }
-
-    public void goToChat() {
-            Intent myIntent = new Intent(view.getContext(), ClubChatFrag.class);
-            startActivity(myIntent);
     }
 }

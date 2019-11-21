@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_add"
             android:title="Create Club" />
         <item
+            android:id="@+id/nav_group_chat"
+            android:icon="@drawable/ic_menu_group_chat"
+            android:title="Group Chat" />
+        <item
             android:id="@+id/nav_all_clubs"
             android:icon="@drawable/ic_menu_all_clubs"
             android:title="All Clubs" />

@@ -168,16 +168,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:srcCompat="@drawable/ic_add" />
 
-            <Button
-                android:id="@+id/ClubGroupChat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Club Chat"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toEndOf="@+id/ClubJoinLeave"
-                app:layout_constraintTop_toBottomOf="@+id/ClubNameView" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

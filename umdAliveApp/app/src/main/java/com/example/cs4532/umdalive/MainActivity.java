@@ -156,6 +156,8 @@ public class MainActivity extends AppCompatActivity
             Bundle data = new Bundle();
             frag.setArguments(data);
             getSupportFragmentManager().beginTransaction().replace(fragContainer.getId(),frag).commit();
+        } else if (id == R.id.nav_group_chat) {
+            launchGroupChat();
 
         } else if (id == R.id.nav_sign_out) {
             signOut();
@@ -253,7 +255,10 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }
     }
-
+    private void launchGroupChat() {
+        Intent intent = new Intent(this, GroupChat.class);
+        startActivity(intent);
+    }
     /**
      * Updates the UI depending on the user that has logged-in,
      * and opens their profile page

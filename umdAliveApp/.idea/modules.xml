@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="umdAliveApp/app" />
       <module fileurl="file://$PROJECT_DIR$/umdAliveApp.iml" filepath="$PROJECT_DIR$/umdAliveApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/umdAliveApp-app.iml" filepath="$PROJECT_DIR$/app/umdAliveApp-app.iml" group="umdAliveApp/app" />
       <module fileurl="file://$PROJECT_DIR$/umdalive-master-umdAliveApp.iml" filepath="$PROJECT_DIR$/umdalive-master-umdAliveApp.iml" group="umdAliveApp" />
+      <module fileurl="file://$PROJECT_DIR$/umdalive-umdAliveApp.iml" filepath="$PROJECT_DIR$/umdalive-umdAliveApp.iml" group="umdAliveApp" />
     </modules>
   </component>
 </project>
