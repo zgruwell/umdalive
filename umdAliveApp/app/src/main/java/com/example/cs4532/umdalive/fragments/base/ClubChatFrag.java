@@ -1,6 +1,7 @@
 package com.example.cs4532.umdalive.fragments.base;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -15,6 +16,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -28,10 +30,26 @@ import java.lang.String;
 public class ClubChatFrag extends Activity {
     View view;
     JSONArray chatArray = new JSONArray();
+    Button send;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.club_chat_layout);
+
+        send = view.findViewById(R.id.enterButton);
+        send.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                try {
+                    enterMessage();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (SAXException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                };
+            }
+        });
     }
 
     private void enterMessage() throws IOException, SAXException, JSONException {
