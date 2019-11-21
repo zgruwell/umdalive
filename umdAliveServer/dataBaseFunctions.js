@@ -4,7 +4,7 @@ var mongojs = require("mongojs");
 var url = 'mongodb://ukko.d.umn.edu:12233/umdAliveDatabase';
 
 //array of collections we will use
-var collections = ['clubs', 'users', 'events'];
+var collections = ['clubs', 'users', 'events','chats'];
 
 var assert = require('assert');
 
@@ -63,7 +63,11 @@ module.exports.getClub = function(clubID, callback) {
         DBRef.collection('events').find({"club": clubID}).toArray(function (err, eventDocs){
           doc.events = eventDocs;
           callback(doc);
-        });
+          });
+        DBRef.collection('chats').find({ "clubs": clubID}).toArray(function (err, chatDocs) {
+          doc.chats = chatDocs;
+          callback(doc);
+          });
       });
     }
   });
@@ -173,6 +177,33 @@ module.exports.deleteClub = function (clubID){
       });
     }
   });
+};
+
+module.exports.sendMessage = function (chatData, callback) {
+        DBRef.collection('chats').save(chatData, function (err, result) {
+            console.log(result);
+            if (err) {
+                console.log(err);
+            } else {
+                DBRef.collection('clubs').findOne({ "_id": mongojs.ObjectId(result.club) }, function (err, doc) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        //Completed
+                    }
+                    doc.events.push(result._id + "");
+                    DBRef.collection('clubs').update({ "_id": mongojs.ObjectId(result.club) }, doc, function (err, result) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            //Completed
+                        }
+                    });
+                });
+                //Completed
+                callback({ "chatID": result._id });
+            }
+        });
 };
 
 //User Calls

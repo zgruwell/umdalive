@@ -3,10 +3,17 @@ package com.example.cs4532.umdalive.fragments.base;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.cs4532.umdalive.MainActivity;
 import com.example.cs4532.umdalive.R;
+import com.example.cs4532.umdalive.RestSingleton;
+import com.example.cs4532.umdalive.UserSingleton;
 import com.google.android.material.textfield.TextInputLayout;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,10 +38,27 @@ public class ClubChatFrag extends Activity {
         TextInputLayout messageInput = view.findViewById(R.id.messageInput);
         String message = messageInput.getEditText().getText().toString();
 
-        JSONObject JSONmessage = new JSONObject(message);
-        chatArray.put(JSONmessage);
+        JSONObject newMessageData = new JSONObject();
+        try {
+            newMessageData.put("name", UserSingleton.getInstance().getName());
+            newMessageData.put("message", message);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        updateChat();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, RestSingleton.getInstance(view.getContext()).getUrl() + "sendMessage", newMessageData,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error connecting", String.valueOf(error));
+            }
+        });
+
+        RestSingleton.getInstance(view.getContext()).addToRequestQueue(jsonObjectRequest);
     }
 
     private void updateChat() throws JSONException {
