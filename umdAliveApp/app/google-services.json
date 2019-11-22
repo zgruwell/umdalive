@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1035848244213",
+    "firebase_url": "https://umdalive-7a8b4.firebaseio.com",
+    "project_id": "umdalive-7a8b4",
+    "storage_bucket": "umdalive-7a8b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035848244213:android:87266af0b23b80a6125ebc",
+        "android_client_info": {
+          "package_name": "com.example.cs4532.umdalive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035848244213-45g4ra6gk6edi1te69ahcnd6tt0dq71m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cs4532.umdalive",
+            "certificate_hash": "efcca6b41813a738e32aab90c5278fe7ee5101ce"
+          }
+        },
+        {
+          "client_id": "1035848244213-cg2774r5hn1kc5oj7er9m9rbj6siei12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEJe3wEJseJxoYX49AVis2V8adGMUHkjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035848244213-cg2774r5hn1kc5oj7er9m9rbj6siei12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
