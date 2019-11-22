@@ -1,8 +1,9 @@
 package com.example.cs4532.umdalive.fragments.base;
 
+
 import androidx.fragment.app.Fragment;
 import android.os.Bundle;
-//import android.support.design.widget.FloatingActionButton;
+
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
+
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -34,6 +36,7 @@ import org.json.JSONObject;
 public class ClubChatFrag extends Fragment {
     //View
     View view;
+
 
     //Layout Components
     private Button sendButton;
@@ -58,9 +61,11 @@ public class ClubChatFrag extends Fragment {
         getLayoutComponents();
 
 
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
             }
         });
@@ -87,6 +92,29 @@ public class ClubChatFrag extends Fragment {
 
         //Return View
         return view;
+
+        JSONObject newMessageData = new JSONObject();
+        try {
+            newMessageData.put("name", UserSingleton.getInstance().getName());
+            newMessageData.put("message", message);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, RestSingleton.getInstance(view.getContext()).getUrl() + "sendMessage", newMessageData,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error connecting", String.valueOf(error));
+            }
+        });
+
+        RestSingleton.getInstance(view.getContext()).addToRequestQueue(jsonObjectRequest);
+
     }
 
 
