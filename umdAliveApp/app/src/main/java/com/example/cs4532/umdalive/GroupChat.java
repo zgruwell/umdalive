@@ -20,7 +20,6 @@ public class GroupChat extends AppCompatActivity {
 
     private FirebaseListAdapter<ChatMessage> adapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

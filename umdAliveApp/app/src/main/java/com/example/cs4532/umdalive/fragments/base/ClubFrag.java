@@ -26,6 +26,7 @@ import com.example.cs4532.umdalive.UserSingleton;
 import com.example.cs4532.umdalive.fragments.create.CreateEventFrag;
 import com.example.cs4532.umdalive.fragments.edit.EditClubFrag;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -141,7 +142,6 @@ public class ClubFrag extends Fragment {
         return view;
     }
 
-
     /**
      * Gets the layout components from club_layout.xml
      * @return nothing
@@ -201,7 +201,7 @@ public class ClubFrag extends Fragment {
             }
         });
 
-        joinLeave.setText("Join CLub");
+        joinLeave.setText("Join Club");
         joinLeave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
