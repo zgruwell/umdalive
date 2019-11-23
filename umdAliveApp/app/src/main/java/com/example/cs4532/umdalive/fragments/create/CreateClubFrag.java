@@ -18,6 +18,7 @@ import com.example.cs4532.umdalive.R;
 import com.example.cs4532.umdalive.RestSingleton;
 import com.example.cs4532.umdalive.UserSingleton;
 import com.example.cs4532.umdalive.fragments.base.ClubFrag;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -135,5 +136,8 @@ public class CreateClubFrag extends Fragment {
         });
 
         RestSingleton.getInstance(getContext()).addToRequestQueue(jsonObjectRequest);
+
+        FirebaseDatabase.getInstance().getReference()
+                .push().setValue(ClubName.getText(), getArguments().getString("clubID"));
     }
 }
