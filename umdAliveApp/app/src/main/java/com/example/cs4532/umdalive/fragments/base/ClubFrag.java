@@ -329,6 +329,9 @@ public class ClubFrag extends Fragment {
     private void joinChat()
     {
         Intent intent = new Intent(getActivity(), GroupChat.class);
+        Bundle b = new Bundle();
+        b.putString("key", clubName.getTag().toString());
+        intent.putExtras(b);
         startActivity(intent);
     }
 

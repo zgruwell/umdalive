@@ -20,12 +20,18 @@ import com.example.cs4532.umdalive.fragments.create.CreateClubFrag;
 public class GroupChat extends AppCompatActivity {
 
     private FirebaseListAdapter<ChatMessage> adapter;
+    private String clubID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.club_chat_layout);
         FirebaseApp.initializeApp(this);
+
+        Bundle b = getIntent().getExtras();
+        if(b != null)
+            clubID = b.getString("key");
+
         displayGroupChatMessages();
 
         Button sendButton = (Button) findViewById(R.id.sendButton);
@@ -34,7 +40,7 @@ public class GroupChat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText messageInput = (EditText) findViewById(R.id.messageInput);
-                FirebaseDatabase.getInstance().getReference().child("messages").push().setValue((ChatMessage) new ChatMessage(messageInput.getText().toString(),
+                FirebaseDatabase.getInstance().getReference().child(clubID).push().setValue((ChatMessage) new ChatMessage(messageInput.getText().toString(),
                         UserSingleton.getInstance().getName(), UserSingleton.getInstance().getProfileUrl()));
 
                 messageInput.setText("");
@@ -47,7 +53,7 @@ public class GroupChat extends AppCompatActivity {
         ListView displayOfAllMessages = (ListView) findViewById(R.id.chatDisplayBox);
 
         adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
-                R.layout.message, FirebaseDatabase.getInstance().getReference().child("messages").getRef()) {
+                R.layout.message, FirebaseDatabase.getInstance().getReference().child(clubID).getRef()) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
                 TextView messageText = (TextView) v.findViewById(R.id.message_text);
