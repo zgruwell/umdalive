@@ -179,6 +179,20 @@ app.put('/userData', function (req, res) {
     //res.json(userData);
 });
 
+app.put('/sendMessage', function (req, res) {
+    if (!req.body) {
+        return res.sendStatus(400);
+    }
+    var chatData = {
+        "name": req.body.name,
+        "message": req.body.message,
+    };
+    dataBase.sendMessage(chatData, function (doc) {
+        console.log(doc);
+        res.send(doc);
+    });
+});
+
 //Event server calls
 app.put('/createEvent', function (req, res){
   if (!req.body){
