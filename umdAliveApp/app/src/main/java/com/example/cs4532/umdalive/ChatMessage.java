@@ -23,6 +23,9 @@ public class ChatMessage {
     public ChatMessage(){
     }
 
+    public ChatMessage(String toString, String name, String profileUrl, int count) {
+    }
+
     public String getMessageText() {
         return messageText;
     }

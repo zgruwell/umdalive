@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
+import com.example.cs4532.umdalive.fragments.create.CreateClubFrag;
 
 
 public class GroupChat extends AppCompatActivity {
@@ -33,10 +34,8 @@ public class GroupChat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EditText messageInput = (EditText) findViewById(R.id.messageInput);
-                FirebaseDatabase.getInstance().getReference()
-                        .push().setValue((ChatMessage) new ChatMessage(messageInput.getText().toString(),
-                        UserSingleton.getInstance().getName(), UserSingleton.getInstance().getProfileUrl())
-                );
+                FirebaseDatabase.getInstance().getReference().child("messages").push().setValue((ChatMessage) new ChatMessage(messageInput.getText().toString(),
+                        UserSingleton.getInstance().getName(), UserSingleton.getInstance().getProfileUrl()));
 
                 messageInput.setText("");
             }
@@ -48,7 +47,7 @@ public class GroupChat extends AppCompatActivity {
         ListView displayOfAllMessages = (ListView) findViewById(R.id.chatDisplayBox);
 
         adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
-                R.layout.message, FirebaseDatabase.getInstance().getReference().getRef()) {
+                R.layout.message, FirebaseDatabase.getInstance().getReference().child("messages").getRef()) {
             @Override
             protected void populateView(View v, ChatMessage model, int position) {
                 TextView messageText = (TextView) v.findViewById(R.id.message_text);
