@@ -32,7 +32,6 @@ public class AllClubsFrag extends Fragment implements View.OnClickListener {
 
     //View
     View view;
-
     //Layout Components
     private LinearLayout allClubsLinearLayout;
 
