@@ -1,5 +1,6 @@
 package com.example.cs4532.umdalive.fragments.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -18,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.cs4532.umdalive.GroupChat;
 import com.example.cs4532.umdalive.R;
 import com.example.cs4532.umdalive.RestSingleton;
 import com.example.cs4532.umdalive.UserSingleton;
@@ -51,7 +53,7 @@ public class ClubFrag extends Fragment {
 
     private Button joinLeave;
     private TextView clubDescription;
-
+    private Button joinChat;
     private LinearLayout members;
     private LinearLayout eventsList;
 
@@ -72,7 +74,6 @@ public class ClubFrag extends Fragment {
 
         //Create View
         view = inflater.inflate(R.layout.club_layout, container, false);
-        view.setVisibility(View.GONE);
 
         joinLeaveObj = new JSONObject();
 
@@ -87,6 +88,13 @@ public class ClubFrag extends Fragment {
         getLayoutComponents();
 
         //On Click
+        joinChat.setText("Join Chat");
+        joinChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                joinChat();
+            }
+        });
         editClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,6 +155,7 @@ public class ClubFrag extends Fragment {
         eventsList = (LinearLayout) view.findViewById(R.id.eventsList);
         editClub = (FloatingActionButton) view.findViewById(R.id.EditClub);
         addEvent = (FloatingActionButton) view.findViewById(R.id.AddEvent);
+        joinChat= (Button) view.findViewById(R.id.JoinChat);
     }
 
     /**
@@ -184,6 +193,13 @@ public class ClubFrag extends Fragment {
 
         String userID = UserSingleton.getInstance().getUserID();
 
+        joinChat.setText("Join Chat");
+        joinChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                joinChat();
+            }
+        });
 
         joinLeave.setText("Join CLub");
         joinLeave.setOnClickListener(new View.OnClickListener() {
@@ -281,6 +297,7 @@ public class ClubFrag extends Fragment {
         }
     }
 
+
     private void joinClub() {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, RestSingleton.getInstance(view.getContext()).getUrl() + "joinClub", joinLeaveObj,
                 new Response.Listener<JSONObject>() {
@@ -308,6 +325,11 @@ public class ClubFrag extends Fragment {
         });
 
         RestSingleton.getInstance(getContext()).addToRequestQueue(jsonObjectRequest);
+    }
+    private void joinChat()
+    {
+        Intent intent = new Intent(getActivity(), GroupChat.class);
+        startActivity(intent);
     }
 
     private void leaveClub() {
