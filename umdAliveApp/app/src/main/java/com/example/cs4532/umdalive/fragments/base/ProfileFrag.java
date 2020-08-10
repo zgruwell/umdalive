@@ -1,5 +1,6 @@
 package com.example.cs4532.umdalive.fragments.base;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.fragment.app.Fragment;
@@ -60,6 +61,7 @@ public class ProfileFrag extends Fragment{
      * @param savedInstanceState
      * @return view The view of the profile page
      */
+    @SuppressLint("RestrictedApi")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Create View
@@ -69,7 +71,8 @@ public class ProfileFrag extends Fragment{
         getLayoutComponents();
 
         if (getArguments().getString("userID") == UserSingleton.getInstance().getUserID()) {
-            profileEdit.setVisibility(View.VISIBLE);
+            profileEdit.
+                    setVisibility(View.VISIBLE);
         } else {
             profileEdit.setVisibility(View.GONE);
         }

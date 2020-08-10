@@ -1,5 +1,6 @@
 package com.example.cs4532.umdalive.fragments.base;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -175,6 +176,7 @@ public class ClubFrag extends Fragment {
      * @throws JSONException Error in JSON processing
      * @see JSONException
      */
+    @SuppressLint("RestrictedApi")
     private void updateUI(JSONObject res) throws JSONException{
         view.setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.PageLoading).setVisibility(View.GONE);
