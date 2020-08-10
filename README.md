@@ -1,3 +1,6 @@
+This Project was a class Project and not all code is written by me.
+This was a collaborated application over the past few years at UMD
+
 # UMD Alive v 1.0
 
 A five-person project, the Bagel Bois branch and application of UMD Alive is an off-shoot of the main branch version that functions similarly to the original, but works logistically different. UMD Alive meant for the use on the University of Minnesota-Duluth campus, and is designed specifically in-mind to work on bringing club information to the forefront, and make it easy to join, create, and find clubs. It is a platform for all of the on-campus clubs and students so that everyone can find a fun group with similar interests to join.
